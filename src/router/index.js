@@ -5,13 +5,16 @@ import IngresarPacientesView from '../views/IngresarPacientesView.vue'
 import ConultaResultadosView from '../views/ConultaResultadosView.vue'
 import ActualizarPacientesView from '../views/ActualizarPacientesView.vue'
 import DetallesPacientesView from '../views/DetallesPacientesView.vue'
-import ActualizarPruebasPPacientesView from '../views/ActualizarPruebasPPacientesView.vue'
-
-
+import LogView from '../views/LogView.vue';
 
 const routes = [
   {
-    path: '/',
+    path: '/login',
+    name: 'login',
+    component: LogView
+  },
+  {
+    path: '/home',
     name: 'home',
     component: HomeView
   },
@@ -31,14 +34,9 @@ const routes = [
     component: ConultaResultadosView
   },
   {
-    path: '/ActualizarPacientes/:id',
+    path: '/ActualizarPacientes',
     name: 'ActualizarPacientes',
     component: ActualizarPacientesView
-  },
-  {
-    path: '/ActualizarPruebasPacientes/:id',
-    name: 'ActualizarPruebasPacientes',
-    component: ActualizarPruebasPPacientesView
   },
   {
     path: '/DetallesPacientes/:id',

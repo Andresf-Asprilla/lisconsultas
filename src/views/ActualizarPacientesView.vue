@@ -1,8 +1,6 @@
-<template> 
-  <h1> Actualizar Pacientes </h1>
-</template>
-<script>
-export default {
-  
-}
-</script>
+<template>
+    <div>
+   
+      <h1>Actualizar Pacientes</h1>
+    </div>
+  </template>
