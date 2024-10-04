@@ -5,6 +5,7 @@ import IngresarPacientesView from '../views/IngresarPacientesView.vue'
 import ConultaResultadosView from '../views/ConultaResultadosView.vue'
 import ActualizarPacientesView from '../views/ActualizarPacientesView.vue'
 import DetallesPacientesView from '../views/DetallesPacientesView.vue'
+import ActualizarPruebasPPacientesView from '../views/ActualizarPruebasPPacientesView.vue'
 
 
 
@@ -30,9 +31,14 @@ const routes = [
     component: ConultaResultadosView
   },
   {
-    path: '/ActualizarPacientes',
+    path: '/ActualizarPacientes/:id',
     name: 'ActualizarPacientes',
     component: ActualizarPacientesView
+  },
+  {
+    path: '/ActualizarPruebasPacientes/:id',
+    name: 'ActualizarPruebasPacientes',
+    component: ActualizarPruebasPPacientesView
   },
   {
     path: '/DetallesPacientes/:id',

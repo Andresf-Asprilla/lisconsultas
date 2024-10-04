@@ -1,6 +1,6 @@
 <template>
-    <h1> {{ paciente.name }} {{ paciente.lastname }}</h1>
-    <div class="accordion" id="accordionPanelsStayOpenExample" style="max-width: 1000px; margin: auto;">
+    <br><h3 class="fst-italic"> <b>Nombre Paciente: {{ paciente.name }} {{ paciente.lastname }} <br>Cedula:{{ paciente.doc }}</b></h3>
+    <div class="accordion"  background-color="success" id="accordionPanelsStayOpenExample" style="max-width: 1000px; margin: auto;">
         <div v-for="(item, index) in pacientePrueba" :key="index" class="accordion-item">
             <h2 class="accordion-header" :id="'panelsStayOpen-heading' + index">
                 <button class="accordion-button" type="button" 
@@ -15,8 +15,7 @@
                  class="accordion-collapse collapse show" 
                  :aria-labelledby="'panelsStayOpen-heading' + index">
                 <div class="accordion-body">
-                
-                    <h2>Perfil Lipídico</h2>
+                    <h4 class="fw-bold">Perfil Lipídico</h4>
                     <div class="perfil-lipidico" >
                     <table>
                         <thead>
@@ -52,18 +51,18 @@
                                 <td>{{item.TRIG}}</td>
                                 <td>mg/dL</td>
                             </tr>
+                            <tr>
+                                
+                                <td></td>
+                                <td></td>
+                                <td><span><router-link :to="{name:'ActualizarPacientes', params:{id:paciente.id}}" class="btn btn-success">Editar</router-link></span>
+                                </td><td><span><button type="button" v-on:click="borrarPaciente(paciente.id)" class="btn btn-danger">Borrar</button></span></td></tr>
                         </tbody>
                     </table>
                 </div>
-
-
-                </div>
-                <div class="btn-group" role="group" aria-label="">
-                    <router-link :to="{name:'ActualizarPacientes', params:{id:paciente.id}}" class="btn btn-success">Editar</router-link>
-                    <button type="button" v-on:click="borrarPaciente(paciente.id)" class="btn btn-danger">Borrar</button>
                 </div>
             </div>
-        </div>
+        </div><br><br>
     </div>
 </template>
 
@@ -110,7 +109,7 @@ export default {
                 .then(response => response.json())
                 .then(datap => {
                     console.log(datap);
-                    this.pacientePrueba = datap;  // Asignar la lista completa
+                    this.pacientePrueba = datap;  
                 });
             })
             .catch(console.log);
