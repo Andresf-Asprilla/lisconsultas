@@ -29,6 +29,12 @@
                 <i class="fas fa-file-medical-alt"></i> Consulta Resultados de Pruebas
               </router-link>
             </li>
+
+            <li class="nav-item">
+              <router-link class="nav-link" to="/login">
+                <i class="fas fa-file-medical-alt"></i> login
+              </router-link>
+            </li>
           </ul>
         </div>
       </div>

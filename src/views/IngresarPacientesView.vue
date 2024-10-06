@@ -170,7 +170,7 @@
         
         }
         console.log(JSON.stringify(enviar))
-         fetch('https://localhost/lis/?insertar',{
+         fetch('https://localhost/lisapi/?insertar',{
                     method:"POST",
                     body:JSON.stringify(enviar)
                 })
@@ -190,7 +190,7 @@
                     "CHOLT": cholt 
                 };
             console.log(JSON.stringify(enviarPrueba));
-            fetch('https://localhost/lis/?insertar_prueba', {
+            fetch('https://localhost/lisapi/?insertar_prueba', {
                     method: "POST",
                     body: JSON.stringify(enviarPrueba) 
                 })
@@ -202,7 +202,7 @@
                 alert("ERROR EN ENVIO DE PRUEBAS")}))
         },
           getEps(){
-            fetch('https://localhost/lis/?consultarEps')
+            fetch('https://localhost/lisapi/?consultarEps')
             .then(respuesta=>respuesta.json())
                       .then((datosRespuesta)=>{
                           console.log(datosRespuesta)
