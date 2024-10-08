@@ -44,7 +44,7 @@
     
                   <div class="form-outline mb-4">
                     <select class='form-select'  id="form3Example4" v-model="epsName" required>
-                      <option v-for="eps in epss" :key="eps.id" :value="eps.id"> {{ eps.name }} </option>
+                      <option v-for="eps in epss" :key="eps.id" :value="eps.id"> {{ eps.eps }} </option>
                     </select>
                     <label class="form-label" for="form3Example4"> Eps </label>
                   </div>
@@ -160,7 +160,7 @@
             "name":name,
             "lastname":lastname,
             "age":age,
-            "gender":gender,
+            "genre":gender,
             "eps":eps,
             "hdl":hdl,
             "ldl":ldl,
