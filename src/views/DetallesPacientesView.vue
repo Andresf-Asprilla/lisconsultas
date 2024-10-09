@@ -1,70 +1,72 @@
 <template>
-  <br><h3 class="fst-italic"> <b>Nombre Paciente: {{ paciente.name }} {{ paciente.lastname }} <br>Cedula:{{ paciente.doc }}</b></h3>
-  <div class="accordion"  background-color="success" id="accordionPanelsStayOpenExample" style="max-width: 1000px; margin: auto;">
-      <div v-for="(item, index) in pacientePrueba" :key="index" class="accordion-item">
-          <h2 class="accordion-header" :id="'panelsStayOpen-heading' + index">
-              <button class="accordion-button" type="button" 
-                      :data-bs-toggle="'collapse'" 
-                      :data-bs-target="'#panelsStayOpen-collapse' + index" 
-                      aria-expanded="true" 
-                      :aria-controls="'panelsStayOpen-collapse' + index">
-                  Registro Numero: {{ index + 1 }}  
-              </button>
-          </h2>
-          <div :id="'panelsStayOpen-collapse' + index" 
-               class="accordion-collapse collapse show" 
-               :aria-labelledby="'panelsStayOpen-heading' + index">
-              <div class="accordion-body">
-                  <h4 class="fw-bold">Perfil Lipídico</h4>
-                  <div class="perfil-lipidico" >
-                  <table>
-                      <thead>
-                          <tr>
-                              <th>Prueba</th>
-                              <th>Descripción</th>
-                              <th>Valor</th>
-                              <th>Unidad</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <tr>
-                              <td><strong>Colesterol Total (CHOLT)</strong></td>
-                              <td>Mide la cantidad total de colesterol en la sangre.</td>
-                              <td>{{item.CHOLT}}</td>
-                              <td>mg/dL</td>
-                          </tr>
-                          <tr>
-                              <td><strong>Lipoproteínas de Alta Densidad (HDL)</strong></td>
-                              <td>Conocido como el colesterol bueno, ayuda a eliminar el colesterol de las arterias.</td>
-                              <td>{{item.HDL}}</td>
-                              <td>mg/dL</td>
-                          </tr>
-                          <tr>
-                              <td><strong>Lipoproteínas de Baja Densidad (LDL)</strong></td>
-                              <td>Conocido como el colesterol malo, puede acumularse en las arterias.</td>
-                              <td>{{item.LDL}}</td>
-                              <td>mg/dL</td>
-                          </tr>
-                          <tr>
-                              <td><strong>Triglicéridos (TRIG)</strong></td>
-                              <td>Representa un tipo de grasa en la sangre.</td>
-                              <td>{{item.TRIG}}</td>
-                              <td>mg/dL</td>
-                          </tr>
-                          <tr>
-                              
-                              <td></td>
-                              <td></td>
-                              <td><span><router-link :to="{name:'ActualizarPruebasPacientes', params:{id:paciente.id}}" class="btn btn-success">Editar</router-link></span>
-                              </td><td><span><button type="button" v-on:click="borrarPaciente(item.id)" class="btn btn-danger">Borrar</button></span></td></tr>
-                      </tbody>
-                  </table>
-              </div>
-              </div>
-          </div>
-      </div><br><br>
-  </div>
-</template>
+    <br><h3 class="fst-italic text-white"> <b>Nombre Paciente: {{ paciente.name }} {{ paciente.lastname }} <br>Cedula: {{ paciente.doc }}</b></h3>
+    <div class="accordion shadow-lg rounded" id="accordionPanelsStayOpenExample" style="max-width: 1000px; margin: auto; background-color: #0d3b66;">
+        <div v-for="(item, index) in pacientePrueba" :key="index" class="accordion-item border rounded shadow-sm mb-3 bg-light">
+            <h2 class="accordion-header" :id="'panelsStayOpen-heading' + index">
+                <button class="accordion-button" type="button" 
+                        :data-bs-toggle="'collapse'" 
+                        :data-bs-target="'#panelsStayOpen-collapse' + index" 
+                        aria-expanded="true" 
+                        :aria-controls="'panelsStayOpen-collapse' + index">
+                    Registro Numero: {{ index + 1 }}  
+                </button>
+            </h2>
+            <div :id="'panelsStayOpen-collapse' + index" 
+                 class="accordion-collapse collapse show" 
+                 :aria-labelledby="'panelsStayOpen-heading' + index">
+                <div class="accordion-body">
+                    <h4 class="fw-bold">Perfil Lipídico</h4>
+                    <div class="perfil-lipidico">
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Prueba</th>
+                                <th>Descripción</th>
+                                <th>Valor</th>
+                                <th>Unidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Colesterol Total (CHOLT)</strong></td>
+                                <td>Mide la cantidad total de colesterol en la sangre.</td>
+                                <td>{{item.CHOLT}}</td>
+                                <td>mg/dL</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Lipoproteínas de Alta Densidad (HDL)</strong></td>
+                                <td>Conocido como el colesterol bueno, ayuda a eliminar el colesterol de las arterias.</td>
+                                <td>{{item.HDL}}</td>
+                                <td>mg/dL</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Lipoproteínas de Baja Densidad (LDL)</strong></td>
+                                <td>Conocido como el colesterol malo, puede acumularse en las arterias.</td>
+                                <td>{{item.LDL}}</td>
+                                <td>mg/dL</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Triglicéridos (TRIG)</strong></td>
+                                <td>Representa un tipo de grasa en la sangre.</td>
+                                <td>{{item.TRIG}}</td>
+                                <td>mg/dL</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td><span><router-link :to="{name:'ActualizarPruebasPacientes', params:{id:paciente.id}}" class="btn btn-success">Editar</router-link></span>
+                                </td>
+                                <td><span><button type="button" v-on:click="borrarPaciente(item.id)" class="btn btn-danger">Borrar</button></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+            </div>
+        </div><br><br>
+    </div>
+  </template>
+  
 
 <style>
 .perfil-lipidico table {

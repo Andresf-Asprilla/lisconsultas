@@ -202,7 +202,7 @@
                 alert("ERROR EN ENVIO DE PRUEBAS")}))
         },
           getEps(){
-            fetch('https://localhost/lisapi/?consultarEps')
+            fetch('http://localhost/lisapi/?consultarEps')
             .then(respuesta=>respuesta.json())
                       .then((datosRespuesta)=>{
                           console.log(datosRespuesta)
