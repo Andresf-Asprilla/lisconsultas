@@ -5,10 +5,10 @@
     <div class="card text-center border border-dark" style="background-color: #fff; margin: 50px; padding: 50px;">
     <div class="card-header border border-danger" style="background:#6aa9e9;">
         
-        <h1 class="fw-bolder" style="color: #fff;"> Lista de Pacientes </h1>
+        <h1 class="fw-bolder" style="color: black;"> Lista de Pacientes </h1>
         <form class="d-flex" @submit.prevent="consultarPacientesDoc">
             <input class="form-control me-2" type="search" placeholder="Ingrese el documento del paciente a buscar" aria-label="Search" v-model="searchQuery">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
         </form>
     </div>
     <div class="card-body">
