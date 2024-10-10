@@ -2,12 +2,37 @@
   <div class="home">
     <div class="container text-center mt-5">
       <div class="row align-items-center">
-        <!-- Imagen de bienvenida -->
-        <div class="col-md-8"> <!-- Columna más grande -->
-          <img src="@/assets/lab1.jpeg" alt="Bienvenida a LisConsultas" class="img-fluid rounded" />
+        <!-- Carrusel de Bootstrap reemplazando la imagen estática -->
+        <div class="col-md-8">
+          <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active" data-bs-interval="2000">
+                <img src="@/assets/lab1.jpeg" class="d-block w-100 " alt="KFC">
+              </div>
+              <div class="carousel-item" data-bs-interval="2000">
+                <img src="@/assets/IMG-20241010-WA0009.jpg" class="d-block w-100 " alt="KFC">
+              </div>
+              <div class="carousel-item" data-bs-interval="2000">
+                <img src="@/assets/IMG-20241010-WA0008.jpg" class="d-block w-100" alt="La Panadería">
+              </div>
+              <div class="carousel-item" data-bs-interval="2000">
+                <img src="@/assets/IMG-20241010-WA0013.jpg" class="d-block w-100 " alt="Pizzería">
+              </div>
+              
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
         </div>
         <!-- Texto descriptivo en un cuadro -->
-        <div class="col-md-4"> <!-- Columna más pequeña -->
+        <div class="col-md-4" style="background-color: #2a6db5;">
           <div class="custom-edit-card">
             <div class="card-body2">
               <p class="lead">
@@ -18,6 +43,7 @@
           </div>
         </div>
       </div>
+
 
       <!-- Características Principales -->
       <div class="features mt-5">
@@ -144,4 +170,34 @@ export default {
   background-color: #44617a; /* Color de fondo específico para la tarjeta de edición */
   /* Puedes añadir más estilos si lo deseas */
 }
+
+.carousel-item img {
+  height: 500px; /* Puedes ajustar la altura según tus necesidades */
+  width: 100%; /* La imagen ocupará todo el ancho del carrusel */
+  object-fit: contain; /* Ajusta la imagen dentro del contenedor sin recortar */
+  padding: 0; /* Elimina cualquier padding innecesario */
+  border-radius: 0; /* Sin bordes redondeados */
+  background-color: #2a6db5;
+}
+
+#carouselExampleInterval {
+  max-width: 800px; /* Ancho máximo del carrusel */
+  margin: auto; /* Centra el carrusel horizontalmente */
+  border-radius: 10px; /* Bordes redondeados del carrusel */
+  overflow: hidden; /* Esconde cualquier contenido que sobresalga */
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad al carrusel */
+  border-color: #ffffff;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #3b0fec80; /* Fondo semitransparente para los controles */
+  border-radius: 50%; /* Controles redondeados */
+}
+
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+  background-color: #3b0fec80; /* Cambia el color de los controles al pasar el mouse */
+}
+
 </style>
