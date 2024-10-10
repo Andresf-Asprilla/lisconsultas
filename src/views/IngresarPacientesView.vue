@@ -7,7 +7,7 @@
           <div class="col-lg-6 mb-5 mb-lg-0">
             <div class="card cascading-right">
               <div class="card-body p-5 shadow-5 text-center">
-                <h2 class="fw-bold mb-5">Crear usuario</h2>
+                <h2 class="fw-bold mb-5 custom-title">Crear usuario</h2>
                 <form>
                 <div class="row">
                     <div class="col-md-6 mb-4">
@@ -44,7 +44,7 @@
     
                   <div class="form-outline mb-4">
                     <select class='form-select'  id="form3Example4" v-model="epsName" required>
-                      <option v-for="eps in epss" :key="eps.id" :value="eps.id"> {{ eps.eps }} </option>
+                      <option v-for="eps in epss" :key="eps.id" :value="eps.id"> {{ eps.epsname }} </option>
                     </select>
                     <label class="form-label" for="form3Example4"> Eps </label>
                   </div>
@@ -53,7 +53,7 @@
                     <div class="col-md-6 mb-4">
                   <div class="form-outline mb-4">
                     <input type="tel" id="form3Example4" class="form-control" v-model=" hdl " required/>
-                    <label class="form-label" for="form3Example4">HDL</label>
+                    <label class="form-label" for="form3Example4">HDL (mg/dL)</label>
                   </div>
     
                   </div>
@@ -61,14 +61,14 @@
                     <div class="col-md-6 mb-4">
                   <div class="form-outline mb-4">
                     <input type="tel" id="form3Example4" class="form-control" v-model="ldl" required/>
-                    <label class="form-label" for="form3Example4">LDL</label>
+                    <label class="form-label" for="form3Example4">LDL (mg/dL)</label>
                   </div>
     
                   </div>
                     <div class="col-md-6 mb-4">
                   <div class="form-outline mb-4">
                     <input type="tel" id="form3Example4" class="form-control" v-model="trig" required/>
-                    <label class="form-label" for="form3Example4">TRIG</label>
+                    <label class="form-label" for="form3Example4">TRIG (mg/dL)</label>
                   </div>
     
                   </div>
@@ -76,7 +76,7 @@
                     <div class="col-md-6 mb-4">
                   <div class="form-outline mb-4">
                     <input type="tel" id="form3Example4" class="form-control" v-model="cholt" required/>
-                    <label class="form-label" for="form3Example4">CHOLT</label>
+                    <label class="form-label" for="form3Example4">CHOLT (mg/dL)</label>
                   </div>
                   </div>
     
@@ -113,10 +113,16 @@
       border-radius: 5px;
       box-shadow: 0 0 10px rgba(75, 75, 75, 0.1);
     }
+    label {
+    color: #01050a; 
+    }
+    .custom-title {
+    color: #0a0231; 
+    }
     
     section {
       padding-top: 5%; 
-      background-image: url('../assets/img1.jpeg');
+      background-image: url('../assets/labsb2.jpg');
       background-size: cover;
       background-position: center;
       padding-bottom: 5%;
@@ -134,7 +140,17 @@
       data(){
             return {
                 genders:["Masculino","Femenino"]
-                ,epss:[]
+                ,epss:[],
+                nameUser: '',
+                lastnameUser: '',
+                documentUser: '',
+                age: '',
+                ender: '',       // Nota: Usar minúsculas para consistencia
+                epsName: '',
+                hdl: '',
+                ldl: '',
+                trig: '',
+                cholt: ''
             }
         },
         created:function(){
@@ -144,8 +160,8 @@
            SaveUser(){
     
         
-          const name= encodeURIComponent(this.nameUser)
-          const lastname=encodeURIComponent(this.lastnameUser)
+          const name= this.nameUser
+          const lastname=this.lastnameUser
           const document= encodeURIComponent(this.documentUser)
           const age= encodeURIComponent(this.age)
           const gender=encodeURIComponent(this.Gender) 

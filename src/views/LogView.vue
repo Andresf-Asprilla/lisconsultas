@@ -68,17 +68,37 @@ export default {
 .gradient-custom-2 {
   /* Fallback para navegadores antiguos */
   background: #6aa9e9; /* Color sólido de respaldo */
-
   /* Chrome 10-25, Safari 5.1-6 */
   background: -webkit-linear-gradient(to right, #6aa9e9, #4a7c99); /* Degradado azul */
-
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background: linear-gradient(to right, #6aa9e9, #4a7c99); /* Degradado azul */
+}
+
+/* Cambiar el color del texto a negro para mayor visibilidad */
+.form-outline input, 
+.form-outline label, 
+.text-muted, 
+p, 
+button {
+  color: #000 !important; /* Negro */
+}
+
+button {
+  background-color: #0066cc; /* Azul oscuro */
+  color: white !important; /* Texto blanco */
+}
+
+a {
+  color: #0066cc !important; /* Cambiar el color del enlace */
 }
 
 @media (min-width: 768px) {
   .gradient-form {
     height: 100vh !important;
+  }
+  
+  .form-outline input, .form-outline label {
+    font-size: 1.2rem; /* Aumentar tamaño de fuente */
   }
 }
 
