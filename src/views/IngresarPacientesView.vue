@@ -81,6 +81,8 @@
                 </div>
                   <!-- Formularios adicionales que aparecen al hacer clic en "Agregar otra prueba" -->
     <div v-for="(prueba, index) in pruebas.slice(1)" :key="index" class="col-12">
+      
+      <h3 style="color: #01050a;">Nueva Prueba</h3>
       <div class="row">
         <div class="col-md-6 mb-4">
           <div class="form-outline mb-4">
@@ -109,7 +111,7 @@
       </div>
     </div>
   </div>
-  <button type="button" class="btn btn-secondary btn-block mb-4" @click="agregarPrueba">Agregar otra </button>
+  <button type="button" class="btn btn-secondary btn-block mb-4" @click="agregarPrueba">Agregar otra prueba </button>
                 <button type="submit" class="btn btn-primary btn-block mb-4" @click="SaveUser">
                   Crear
                 </button>
