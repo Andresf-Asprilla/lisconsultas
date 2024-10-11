@@ -1,12 +1,12 @@
 <template>
-   <div style="background-color: #0a3a5a; padding: 20px;">
+   <div style="background-color: #fff; padding: 20px;">
   <!-- Contenedor Flex para alinear la tabla y el botón en el mismo nivel -->
   <div style="display: flex; justify-content: space-between; align-items: center;">
     <!-- Tabla -->
     <table class="table table-borderless rounded-pill" style="background-color: #ffff; max-width: 800px; padding: 20px; color: black; border-color: brown; box-shadow: 0 0px 7px rgba(0, 0, 0, 0.3);margin-left: 30%;">
       <thead>
         <tr>
-          <th colspan="6" class="text-center rounded-pill" style="background-color: #6aa9e9;">INFORMACIÓN DEL PACIENTE</th>
+          <th colspan="6" class="text-center rounded-pill" style="background-color: #f0e9e9;">INFORMACIÓN DEL PACIENTE</th>
         </tr>
       </thead>
       <tbody>
@@ -28,7 +28,7 @@
     </table>
 
    
-    <router-link :to="{name:'ListarPacientes'}" class="btn btn-primary" style="background-color: #6aa9e9;margin-right: 10%;" type="submit">
+    <router-link :to="{name:'ListarPacientes'}" class="btn btn-primary" style="background-color: #e32020;margin-right: 10%;" type="submit">
       Volver a Listar Pacientes
       <br><br>
       <i class="fa-solid fa-rotate-right"></i> <i class="fas fa-users"></i>
@@ -41,7 +41,7 @@
       <div class="accordion accordion-flush" id="accordionFlushExample" style="max-width: 1000px; margin: auto; padding-top: 20px;">
         <div v-for="(item, index) in pacientePrueba" :key="index" class="accordion-item border border-5 rounded shadow-sm mb-3 bg-white">
           <h2 class="accordion-header" :id="'panelsStayOpen-heading' + index">
-            <button class="accordion-button" type="button" style="background-color: #6aa9e9; color: white;" 
+            <button class="accordion-button" type="button" style="background-color: #f0e9e9; color: white;" 
                     :data-bs-toggle="'collapse'" 
                     :data-bs-target="'#panelsStayOpen-collapse' + index" 
                     aria-expanded="true" 
