@@ -79,16 +79,43 @@
                   <label class="form-label" for="form3Example4">CHOLT (mg/dL)</label>
                 </div>
                 </div>
-  
-                </div>
+                  <!-- Formularios adicionales que aparecen al hacer clic en "Agregar otra prueba" -->
+    <div v-for="(prueba, index) in pruebas.slice(1)" :key="index" class="col-12">
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <div class="form-outline mb-4">
+            <input type="tel" class="form-control" v-model="prueba.hdl" required />
+            <label class="form-label">HDL (mg/dL)</label>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="form-outline mb-4">
+            <input type="tel" class="form-control" v-model="prueba.ldl" required />
+            <label class="form-label">LDL (mg/dL)</label>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="form-outline mb-4">
+            <input type="tel" class="form-control" v-model="prueba.trig" required />
+            <label class="form-label">TRIG (mg/dL)</label>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="form-outline mb-4">
+            <input type="tel" class="form-control" v-model="prueba.cholt" required />
+            <label class="form-label">CHOLT (mg/dL)</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="btn btn-secondary btn-block mb-4" @click="agregarPrueba">Agregar otra </button>
                 <button type="submit" class="btn btn-primary btn-block mb-4" @click="SaveUser">
                   Crear
                 </button>
                 <button type="reset" class="btn btn-danger btn-block mb-4">
                  Limpiar
-               </button>
-  
-          
+               </button>                      
               </form>
             </div>
           </div>
@@ -150,13 +177,18 @@
               hdl: '',
               ldl: '',
               trig: '',
-              cholt: ''
+              cholt: '',
+              pruebas: [{ hdl: '', ldl: '', trig: '', cholt: '' }]
           }
       },
       created:function(){
          this.getEps() 
       },
   methods:{
+    agregarPrueba() {
+      this.pruebas.push({ hdl: '', ldl: '', trig: '', cholt: '' });
+    },
+    
          SaveUser(){
         const name= this.nameUser
         const lastname=this.lastnameUser
