@@ -174,17 +174,19 @@
               lastnameUser: '',
               documentUser: '',
               age: '',
-              gender: '',       // Nota: Usar minúsculas para consistencia
+              gender: '',       
               epsName: '',
               hdl: '',
               ldl: '',
               trig: '',
               cholt: '',
-              pruebas: [{ hdl: '', ldl: '', trig: '', cholt: '' }]
+              pruebas: [{ hdl: '', ldl: '', trig: '', cholt: '' }],
+              especialistaId: null,
           }
       },
       created:function(){
-         this.getEps() 
+         this.getEps() ,
+         this.especialistaId = localStorage.getItem('especialistaId')
       },
   methods:{
     agregarPrueba() {
@@ -202,6 +204,7 @@
         const ldl=encodeURIComponent(this.ldl)
         const trig=encodeURIComponent(this.trig)
         const cholt=encodeURIComponent(this.cholt)
+        const especialistaId = this.especialistaId;  
      
         let enviar={
           "doc":document,
@@ -214,7 +217,7 @@
           "ldl":ldl,
           "trig":trig,
           "cholt": cholt,
-          "id_especialista" : "1"
+         "id_especialista" :especialistaId
         }
       console.log(JSON.stringify(enviar))
        fetch('http://localhost/lisapi/?insertar',{
@@ -230,7 +233,7 @@
               //enviar usuarios a la tabla pruebas de la misma forma como se envia a usuarios              
                let enviarPrueba = {
                   "doc": document,
-                  "id_especialista": "1", 
+                  "id_especialista": especialistaId, 
                   "hdl": hdl, 
                   "ldl": ldl, 
                   "trig": trig,

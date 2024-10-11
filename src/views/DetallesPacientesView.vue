@@ -16,7 +16,7 @@
           <td style="font-weight: bold;">Documento</td>
           <td>{{ paciente.doc }}</td>
           <td style="font-weight: bold;">EPS</td>
-          <td>{{ paciente.eps }}</td>
+          <td>{{ epss[epsIndex]?.epsname }}</td>
         </tr>
         <tr>
           <td style="font-weight: bold;">Género</td>
@@ -129,46 +129,65 @@
 
 
 export default {
- data() {
-     return {
-         paciente: {},
-         pacientePrueba: []  
-     }
- },
- created() {
-     this.obtenerPacienteID();
- },
- methods: {
-     obtenerPacienteID() {
-         fetch('http://localhost/lisapi/?consultar=' + this.$route.params.id)
-         .then(response => response.json())
-         .then(data => {
-             console.log(data);
-             this.paciente = data[0];
+  data() {
+    return {
+      paciente: {},
+      pacientePrueba: [],
+      epss: [], // Corregido a array
+      epsIndex: null // Agregada propiedad para epsIndex
+    };
+  },
+  created() {
+    this.obtenerPacienteID();
+    this.getEps(); // Llamamos al método para obtener EPS
+  },
+  methods: {
+    obtenerPacienteID() {
+      fetch('http://localhost/lisapi/?consultar=' + this.$route.params.id)
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          this.paciente = data[0];
 
-             fetch('http://localhost/lisapi/?consultarpruebas=' + this.paciente.doc)
-             .then(response => response.json())
-             .then(datap => {
-                 console.log(datap);
-                 this.pacientePrueba = datap;  
-             });
-         })
-         .catch(console.log);
+          fetch('http://localhost/lisapi/?consultarpruebas=' + this.paciente.doc)
+            .then(response => response.json())
+            .then(datap => {
+              console.log(datap);
+              this.pacientePrueba = datap;
+            });
+        })
+        .catch(console.log);
+    },
+    borrarPaciente(id) {
+      console.log(id);
+      fetch('http://localhost/lisapi/?Pruebasborrar=' + id)
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          console.log(id);
+          window.location.href = '/ListarPacientes';
+        })
+        .catch(console.log);
+    },
+    getEps() {
+      fetch('http://localhost/lisapi/?consultarEps')
+        .then(respuesta => respuesta.json())
+        .then(datosRespuesta => {
+          console.log(datosRespuesta);
+          if (typeof datosRespuesta[0].success === 'undefined') {
+            this.epss = datosRespuesta;
+          }
 
-         
-     }
-     ,
-     borrarPaciente(id){
-           console.log(id);
-           fetch('http://localhost/lisapi/?Pruebasborrar='+id) 
-           .then(response=>response.json())
-           .then((data)=>{
-               console.log(data);
-               console.log(id);
-               window.location.href='/ListarPacientes'
-           })
-           .catch(console.log)
-           }
- }
-}
+          // Asegúrate de que `this.paciente.eps` esté disponible
+          if (this.paciente.eps) {
+            this.epsIndex = parseInt(this.paciente.eps) - 1; // Guardamos epsIndex en el estado
+          }
+        })
+        .catch(console.log);
+    }
+  }
+};
+
+
+
 </script>

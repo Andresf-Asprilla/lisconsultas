@@ -42,8 +42,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-success">Guardar</button>
-                <router-link :to="{ name:'ListarPacientes'}" class="btn btn-danger">Cancelar</router-link>
-
+              <router-link :to="{name:'ListarPacientes'}" class="btn btn-info" >Cancelar</router-link>
               </form>
             </div>
           </div>
@@ -61,18 +60,19 @@
 export default {
   data() {
     return {
-      pruebaone: {} 
+      pruebaone: {} // Se mantiene en un solo objeto para contener las pruebas
     };
   },
   created() {
     this.obtenerPruebasID();
+    
   },
   methods: {
     obtenerPruebasID() {
-      fetch('http://localhost/lisapi/?consultarporid=' + this.$route.params.id)
+      fetch('http://localhost/lisapi/?consultarpruebasid=' + this.$route.params.id)
         .then(response => response.json())
         .then((data) => {
-          this.pruebaone = data[0]; 
+          this.pruebaone = data[0]; // Asignamos directamente al objeto
           console.log(this.pruebaone);
         })
         .catch(console.log);
@@ -81,15 +81,15 @@ export default {
       fetch('http://localhost/lisapi/?actualizarprue', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json' 
+          'Content-Type': 'application/json' // Especificar el tipo de contenido JSON
         },
-        body: JSON.stringify(this.pruebaone) 
+        body: JSON.stringify(this.pruebaone) // Enviar las pruebas actualizadas
       })
         .then(response => response.json())
         .then((data) => {
           console.log(data);
           if (data.success) { 
-            window.location.href = '/ListarPacientes'; 
+            window.location.href = '/ListarPacientes'; // Redirigir tras la actualización
           } else {
             console.log('Error en la actualización:', data);
           }
