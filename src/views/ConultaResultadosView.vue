@@ -1,155 +1,80 @@
 <template>
-  <section class="text-center gradient-background">
+  <section class="text-center text-lg-start">
     <div class="container py-4">
-      <!-- Título principal -->
-      <h2 class="fw-bold mb-5 text-light">Consultar Información del Paciente</h2>
-
-      <!-- Imagen decorativa -->
-      <div class="image-container mb-5">
-        <img src="@/assets/lis2.jpeg" alt="Consulta médica" class="img-fluid rounded-circle shadow">
-      </div>
-
-      <!-- Campo de entrada para el número de documento -->
-      <div class="form-outline mb-4">
-        <i class="fas fa-id-card icon"></i> <!-- Icono de documento -->
-        <input
-          type="tel"
-          id="documentInput"
-          class="form-control"
-          v-model="documentId"
-          placeholder="Número de Documento de Identidad"
-          required
-        />
-        <label class="form-label text-light" for="documentInput">Número de Documento de Identidad</label>
-      </div>
-
-      <!-- Botón de consulta -->
-      <button type="button" class="btn btn-primary" @click="fetchPatientData">
-        <i class="fas fa-search"></i> Consultar
-      </button>
-
-      <!-- Mostrar datos del paciente -->
-      <div v-if="patientData" class="mt-4 text-light">
-        <h3 class="section-title">Datos del Paciente:</h3>
-        <p><strong><i class="fas fa-user"></i> Nombres:</strong> {{ patientData.name }}</p>
-        <p><strong><i class="fas fa-user"></i> Apellidos:</strong> {{ patientData.lastname }}</p>
-        <p><strong><i class="fas fa-birthday-cake"></i> Edad:</strong> {{ patientData.age }}</p>
-        <p><strong><i class="fas fa-venus-mars"></i> Género:</strong> {{ patientData.gender }}</p>
-        <p><strong><i class="fas fa-hospital"></i> EPS:</strong> {{ patientData.epsName }}</p>
-
-        <h3 class="section-title">Resultados del Perfil Lipídico:</h3>
-        <p><strong><i class="fas fa-vial"></i> HDL:</strong> {{ lipidProfile.hdl }}</p>
-        <p><strong><i class="fas fa-vial"></i> LDL:</strong> {{ lipidProfile.ldl }}</p>
-        <p><strong><i class="fas fa-vial"></i> Triglicéridos:</strong> {{ lipidProfile.trig }}</p>
-        <p><strong><i class="fas fa-vial"></i> Colesterol Total:</strong> {{ lipidProfile.cholt }}</p>
+      <div class="row g-0 align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <div class="card cascading-right" style="
+              background: hsla(0, 0%, 100%, 0.55);
+              backdrop-filter: blur(30px);">
+            <div class="card-body p-5 shadow-5 text-center">
+              <h2 class="fw-bold mb-5">Consultar resultados</h2>
+              <form @submit.prevent="searchId"> <!-- Prevent form submission -->
+                <div class="form-outline mb-4">
+                  <input type="tel" id="form3Example4" class="form-control" v-model="documentUser" required/>
+                  <label class="form-label" for="form3Example4">Documento de Identidad</label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block mb-4">Buscar</button>
+                <button type="reset" class="btn btn-danger btn-block mb-4">Limpiar</button>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 </template>
 
+<style scoped>
+.card {
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(159, 1, 1, 0.2);
+  border-radius: 10px;
+}
+.fw-bold, .form-label {
+  color: #0e1011;
+}
+.form-control {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(75, 75, 75, 0.1); 
+}
+section {
+  background-image: url('../assets/labsb2.jpg');
+  background-size: cover;
+  background-position: center;
+}
+@media (min-width: 992px) {
+  .cascading-right {
+    margin-right: 50px;
+  }
+}
+</style>
+
 <script>
 export default {
   data() {
     return {
-      documentId: '',
-      patientData: null,
-      lipidProfile: {},
-    };
+      userid: null,
+      documentUser: ''
+    }
   },
   methods: {
-    fetchPatientData() {
-      // Reemplaza la URL con tu API real
-      fetch(`https://localhost/lisapi/?consultarPaciente&document=${this.documentId}`)
-        .then((response) => response.json())
-        .then((data) => {
-          
-          this.patientData = data.patient; 
-          this.lipidProfile = data.lipidProfile; // Asegúrate de que la estructura coincida con tu respuesta
+    searchId(event) {
+      event.preventDefault();
+      const url = `http://localhost/lisapi/?consultarPacientesdoc=${this.documentUser}`
+      fetch(url, { method: "GET" })
+        .then(respuesta => respuesta.json())
+        .then((datosRespuesta) => {
+          if (datosRespuesta.success === 0 || !datosRespuesta[0]?.id) {
+            alert("Usuario no encontrado");
+          } else {
+            console.log(datosRespuesta);
+            this.userid = datosRespuesta[0].id;
+            this.$router.push({ name: 'VerResultados', params: { id: this.userid } });
+          }
         })
-        .catch((error) => {
-          console.error("Error:", error);
-          alert("Error al obtener los datos del paciente.");
-        });
-    },
-  },
-};
+        .catch(console.log);
+    }
+  }
+}
 </script>
-
-<style scoped>
-
-.gradient-background {
-  background: linear-gradient(to right, #011438, #2464d4); /* Degradado azul oscuro */
-  min-height: 100vh;
-  padding-top: 50px;
-  padding-bottom: 50px;
-}
-
-
-h2 {
-  color: #ffffff;
-  font-size: 2rem;
-  margin-bottom: 30px;
-}
-
-.image-container img {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 50%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-
-.form-control {
-  padding-left: 2.5rem; /* Espacio para el ícono */
-  border-radius: 20px;
-}
-
-
-.icon {
-  position: absolute;
-  margin-left: 10px;
-  margin-top: 10px;
-  color: #6c757d;
-  font-size: 1.5rem;
-}
-
-h3.section-title {
-  color: #ffffff;
-  margin-top: 30px;
-  font-size: 1.5rem;
-}
-
-
-p {
-  margin-bottom: 10px;
-}
-
-.btn-primary {
-  background-color: #e52c1f;
-  border-radius: 25px;
-  padding: 10px 20px;
-  font-size: 1.1rem;
-}
-
-
-@media (max-width: 576px) {
-  .image-container img {
-    width: 200px;
-    height: 200px;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  h3.section-title {
-    font-size: 1.2rem;
-  }
-
-  .btn-primary {
-    font-size: 1rem;
-    padding: 8px 16px;
-  }
-}
-</style>

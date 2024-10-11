@@ -1,15 +1,16 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg" style="background-color: #2a6db5; color: white;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #343a40;">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
-          <img src="@/assets/LIS.jpeg" alt="Logo del Lab" class="logo" style="width: 100px; height: auto;" />
+          <img src="@/assets/LIS.jpeg" alt="Logo del Lab" class="logo" />
+          <span class="brand-text">LIS Consultas</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
+          <ul class="navbar-nav ms-auto">
             <li class="nav-item">
               <router-link class="nav-link" to="/home">
                 <i class="fas fa-home"></i> Home
@@ -32,7 +33,7 @@
             </li>
             <li class="nav-item">
               <router-link class="nav-link" to="/login">
-                <i class="fas fa-file-medical-alt"></i> Login
+                <i class="fas fa-sign-in-alt"></i> Login
               </router-link>
             </li>
           </ul>
@@ -42,7 +43,7 @@
 
     <router-view />
 
-    <footer class="footer">
+    <footer class="footer bg-dark text-light">
       <div class="container">
         <div class="row">
           <div class="col text-center">
@@ -53,13 +54,13 @@
           <div class="col text-center">
             <h5>Redes Sociales</h5>
             <a href="https://facebook.com" target="_blank">
-              <i class="fab fa-facebook fa-lg"></i>
+              <i class="fab fa-facebook fa-lg text-white"></i>
             </a>
             <a href="https://twitter.com" target="_blank">
-              <i class="fab fa-twitter fa-lg"></i>
+              <i class="fab fa-twitter fa-lg text-white"></i>
             </a>
             <a href="https://instagram.com" target="_blank">
-              <i class="fab fa-instagram fa-lg"></i>
+              <i class="fab fa-instagram fa-lg text-white"></i>
             </a>
           </div>
           <div class="col text-center">
@@ -79,63 +80,66 @@
 
 <style scoped>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #ffffff; /* Cambiar color del texto */
+  color: #ffffff;
 }
 
-nav {
-  padding: 5px 15px; /* Ajustar padding de la barra */
+.navbar {
+  padding: 10px 20px;
 }
 
 .navbar-brand {
   font-weight: bold;
-  font-size: 2rem; /* Aumentar tamaño de la fuente del logo */
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
 }
 
 .logo {
-  width: 80px; /* Ajustar el tamaño del logo */
-  margin-right: 10px; /* Espaciado entre el logo y el texto */
+  width: 50px;
+  margin-right: 10px;
 }
 
 .brand-text {
-  color: #ffffff; /* Color del texto del logo */
+  color: #ffffff;
+  font-size: 1.2rem;
 }
 
-nav a {
+.navbar-nav .nav-link {
   font-weight: bold;
-  color: #ffffff; /* Color de las letras en la barra de navegación */
-  transition: color 0.3s;
-  margin-right: 20px; /* Espaciado entre los elementos */
+  color: #ffffff;
+  margin-right: 20px;
+  transition: color 0.3s ease;
 }
 
-nav a:hover {
-  color: #ffcc00; /* Color de texto al pasar el mouse */
+.navbar-nav .nav-link:hover {
+  color: #f39c12;
 }
 
-nav a.router-link-exact-active {
-  color: #ffcc00; /* Color activo */
+.navbar-nav .router-link-exact-active {
+  color: #f39c12;
 }
 
-/* Estilos para el footer */
 .footer {
-  background-color: #2a6db5; /* Cambiar el color de la barra inferior */
+  background-color: #343a40;
   color: white;
-  padding: 20px 0; /* Aumentar padding para mayor espacio */
+  padding: 30px 0;
 }
 
 .footer h5 {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .footer a {
   color: white;
-  margin: 0 5px;
+  margin: 0 10px;
+  font-size: 1.1rem;
 }
 
 .footer a:hover {
-  text-decoration: underline;
+  color: #f39c12;
 }
 </style>

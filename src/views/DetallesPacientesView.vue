@@ -109,19 +109,19 @@
 
 <style>
 .perfil-lipidico table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+ width: 100%;
+ border-collapse: collapse;
+ margin-top: 20px;
 }
 
 .perfil-lipidico th, .perfil-lipidico td {
-  border: 1px solid #ffffff;
-  padding: 8px;
-  text-align: left;
+ border: 1px solid #ffffff;
+ padding: 8px;
+ text-align: left;
 }
 
 .perfil-lipidico th {
-  background-color: #ffffff;
+ background-color: #ffffff;
 }
 </style>
 
@@ -129,46 +129,46 @@
 
 
 export default {
-  data() {
-      return {
-          paciente: {},
-          pacientePrueba: []  
-      }
-  },
-  created() {
-      this.obtenerPacienteID();
-  },
-  methods: {
-      obtenerPacienteID() {
-          fetch('http://localhost/lisapi/?consultar=' + this.$route.params.id)
-          .then(response => response.json())
-          .then(data => {
-              console.log(data);
-              this.paciente = data[0];
+ data() {
+     return {
+         paciente: {},
+         pacientePrueba: []  
+     }
+ },
+ created() {
+     this.obtenerPacienteID();
+ },
+ methods: {
+     obtenerPacienteID() {
+         fetch('http://localhost/lisapi/?consultar=' + this.$route.params.id)
+         .then(response => response.json())
+         .then(data => {
+             console.log(data);
+             this.paciente = data[0];
 
-              fetch('http://localhost/lisapi/?consultarpruebas=' + this.paciente.doc)
-              .then(response => response.json())
-              .then(datap => {
-                  console.log(datap);
-                  this.pacientePrueba = datap;  
-              });
-          })
-          .catch(console.log);
+             fetch('http://localhost/lisapi/?consultarpruebas=' + this.paciente.doc)
+             .then(response => response.json())
+             .then(datap => {
+                 console.log(datap);
+                 this.pacientePrueba = datap;  
+             });
+         })
+         .catch(console.log);
 
-          
-      }
-      ,
-      borrarPaciente(id){
-            console.log(id);
-            fetch('http://localhost/lisapi/?Pruebasborrar='+id) 
-            .then(response=>response.json())
-            .then((data)=>{
-                console.log(data);
-                console.log(id);
-                window.location.href='/ListarPacientes'
-            })
-            .catch(console.log)
-            }
-  }
+         
+     }
+     ,
+     borrarPaciente(id){
+           console.log(id);
+           fetch('http://localhost/lisapi/?Pruebasborrar='+id) 
+           .then(response=>response.json())
+           .then((data)=>{
+               console.log(data);
+               console.log(id);
+               window.location.href='/ListarPacientes'
+           })
+           .catch(console.log)
+           }
+ }
 }
 </script>

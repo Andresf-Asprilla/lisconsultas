@@ -7,6 +7,7 @@ import ActualizarPacientesView from '../views/ActualizarPacientesView.vue'
 import DetallesPacientesView from '../views/DetallesPacientesView.vue'
 import ActualizarPruebasPPacientesView from '../views/ActualizarPruebasPPacientesView.vue'
 import LogView from '../views/LogView.vue';
+import VerResultados from '@/views/VerResultados.vue'
 
 const routes = [
   {
@@ -48,6 +49,11 @@ const routes = [
     path: '/DetallesPacientes/:id',
     name: 'DetallesPacientes',
     component: DetallesPacientesView
+  },
+  {
+    path: '/VerResultados/:id',
+    name: 'VerResultados',
+    component: VerResultados
   },
   
   {
