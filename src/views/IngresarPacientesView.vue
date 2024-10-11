@@ -95,9 +95,9 @@
           </div>
         </div>
       </div>
-      <!-- Jumbotron -->
+  
     </section>
-    <!-- Section: Design Block -->
+  
     </template>
     
     <style scoped>

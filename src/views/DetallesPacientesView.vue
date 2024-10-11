@@ -1,32 +1,41 @@
 <template>
    <div style="background-color: #0a3a5a; padding: 20px;">
-    <table class="table table-borderless rounded-pill" style="background-color: #ffff; max-width: 1000px; margin: auto; padding: 20px; color: black; border-color: brown; box-shadow: 0 0px 7px rgba(0, 0, 0, 0.3);">
-        <thead>
-            <tr>
-                <th colspan="6" class="text-center rounded-pill" style="background-color: #6aa9e9;">INFORMACION DEL PACIENTE</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td style="font-weight: bold;">Nombre Paciente</td>
-                <td>{{ paciente.name }} {{ paciente.lastname }}</td>
-                <td style="font-weight: bold;">Documento</td>
-                <td>{{ paciente.doc }}</td>
-               
-                <td  style="font-weight: bold;">EPS</td>
-                <td >{{ paciente.eps }}</td>
-            </tr>
-            <tr>
-                <td style="font-weight: bold;">Género</td>
-                <td>{{ paciente.gender }}</td>
-                <td style="font-weight: bold;">Edad</td>
-                <td>{{ paciente.age }}</td>
-            </tr>
-        </tbody>
+  <!-- Contenedor Flex para alinear la tabla y el botón en el mismo nivel -->
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <!-- Tabla -->
+    <table class="table table-borderless rounded-pill" style="background-color: #ffff; max-width: 800px; padding: 20px; color: black; border-color: brown; box-shadow: 0 0px 7px rgba(0, 0, 0, 0.3);margin-left: 30%;">
+      <thead>
+        <tr>
+          <th colspan="6" class="text-center rounded-pill" style="background-color: #6aa9e9;">INFORMACIÓN DEL PACIENTE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight: bold;">Nombre Paciente</td>
+          <td>{{ paciente.name }} {{ paciente.lastname }}</td>
+          <td style="font-weight: bold;">Documento</td>
+          <td>{{ paciente.doc }}</td>
+          <td style="font-weight: bold;">EPS</td>
+          <td>{{ paciente.eps }}</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold;">Género</td>
+          <td>{{ paciente.gender }}</td>
+          <td style="font-weight: bold;">Edad</td>
+          <td>{{ paciente.age }}</td>
+        </tr>
+      </tbody>
     </table>
 
+   
+    <router-link :to="{name:'ListarPacientes'}" class="btn btn-primary" style="background-color: #6aa9e9;margin-right: 10%;" type="submit">
+      Volver a Listar Pacientes
+      <br><br>
+      <i class="fa-solid fa-rotate-right"></i> <i class="fas fa-users"></i>
+    </router-link>
+  </div>
 
-
+  
       
  
       <div class="accordion accordion-flush" id="accordionFlushExample" style="max-width: 1000px; margin: auto; padding-top: 20px;">
@@ -82,7 +91,7 @@
                       <td></td>
                       <td></td>
                       <td>
-                        <span><router-link :to="{name:'ActualizarPruebasPacientes', params:{id:paciente.id}}" class="btn btn-success">Editar</router-link></span>
+                        <span><router-link :to="{name:'ActualizarPruebasPacientes', params:{id:item.id}}" class="btn btn-success">Editar</router-link></span>
                       </td>
                       <td>
                         <span><button type="button" v-on:click="borrarPaciente(item.id)" class="btn btn-danger">Borrar</button></span>
