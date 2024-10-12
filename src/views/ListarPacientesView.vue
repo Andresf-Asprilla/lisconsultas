@@ -51,11 +51,11 @@ export default {
     created() {
         this.especialistaId = localStorage.getItem('especialistaId');
         console.log('Especialista ID:', this.especialistaId);
-        this.consultarPacientes(); // Llama a la función para cargar los pacientes por especialista.
+        this.consultarPacientes(); 
     },
     methods: {
         consultarPacientes() {
-            // Asegúrate de que estás utilizando 'this.especialistaId'
+            
             fetch('http://localhost/lisapi/?consultarusuarios=' + this.especialistaId)
                 .then(response => response.json())
                 .then((data) => {

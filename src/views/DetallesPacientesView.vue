@@ -133,13 +133,13 @@ export default {
     return {
       paciente: {},
       pacientePrueba: [],
-      epss: [], // Corregido a array
-      epsIndex: null // Agregada propiedad para epsIndex
+      epss: [], 
+      epsIndex: null 
     };
   },
   created() {
     this.obtenerPacienteID();
-    this.getEps(); // Llamamos al método para obtener EPS
+    this.getEps(); 
   },
   methods: {
     obtenerPacienteID() {
@@ -174,13 +174,14 @@ export default {
         .then(respuesta => respuesta.json())
         .then(datosRespuesta => {
           console.log(datosRespuesta);
+
           if (typeof datosRespuesta[0].success === 'undefined') {
             this.epss = datosRespuesta;
           }
 
-          // Asegúrate de que `this.paciente.eps` esté disponible
+         
           if (this.paciente.eps) {
-            this.epsIndex = parseInt(this.paciente.eps) - 1; // Guardamos epsIndex en el estado
+            this.epsIndex = parseInt(this.paciente.eps) - 1;
           }
         })
         .catch(console.log);

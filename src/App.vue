@@ -1,37 +1,42 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #343a40;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
           <img src="@/assets/LIS.jpeg" alt="Logo del Lab" class="logo" />
           <span class="brand-text">LIS Consultas</span>
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
+           
+            <li class="nav-item" v-if="shouldShow('home')">
               <router-link class="nav-link" to="/home">
                 <i class="fas fa-home"></i> Home
               </router-link>
             </li>
-            <li class="nav-item">
+           
+            <li class="nav-item" v-if="shouldShow('listarPacientes')">
               <router-link class="nav-link" to="/ListarPacientes">
                 <i class="fas fa-users"></i> Listar Pacientes
               </router-link>
             </li>
-            <li class="nav-item">
+            
+            <li class="nav-item" v-if="shouldShow('ingresarPacientes')">
               <router-link class="nav-link" to="/IngresarPacientes">
                 <i class="fas fa-user-plus"></i> Ingresar Pacientes
               </router-link>
             </li>
-            <li class="nav-item">
+            
+            <li class="nav-item" v-if="shouldShow('consultaResultados')">
               <router-link class="nav-link" to="/ConsultaResultados">
                 <i class="fas fa-file-medical-alt"></i> Consulta Resultados de Pruebas
               </router-link>
             </li>
-            <li class="nav-item">
+       
+            <li class="nav-item" v-if="shouldShow('login')">
               <router-link class="nav-link" to="/login">
                 <i class="fas fa-sign-in-alt"></i> Login
               </router-link>
@@ -42,6 +47,7 @@
     </nav>
 
     <router-view />
+
 
     <footer class="footer bg-dark text-light">
       <div class="container">
@@ -77,6 +83,32 @@
     </footer>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    shouldShow(link) {
+      const currentPath = this.$route.path;
+
+     
+      switch (link) {
+        case 'home':
+          return true; 
+        case 'login':
+          return currentPath !== '/login'; 
+        case 'consultaResultados':
+          return currentPath === '/home' || currentPath === '/ConsultaResultados';
+        case 'listarPacientes':
+          return currentPath === '/IngresarPacientes' || currentPath === '/ListarPacientes';
+        case 'ingresarPacientes':
+          return currentPath === '/ListarPacientes';
+        default:
+          return false;
+      }
+    }
+  }
+};
+</script>
 
 <style scoped>
 #app {

@@ -10,7 +10,13 @@ import LogView from '../views/LogView.vue';
 import VerResultados from '@/views/VerResultados.vue'
 
 const routes = [
+  { 
+    
+    path: '/',
+    redirect: '/home' 
+  },
   {
+
     path: '/login',
     name: 'login',
     component: LogView
